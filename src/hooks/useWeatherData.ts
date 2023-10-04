@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useRequest from "./useRequest";
+import { WEATHER_DATA_API_URL } from "@/constants/externalServices";
 import { convertWeatherToWeatherDataProps } from "@/utils/convertWeatherToWeatherDataProps";
 
 const useWeatherData = () => {
@@ -7,7 +8,7 @@ const useWeatherData = () => {
     const { getData } = useRequest();
     
     const updateWeatherData = async (cityName: string) => {
-        getData(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=${cityName}&appid=cf3e3bb938b7dc300137e6010fbe89e7`)
+        getData(`${WEATHER_DATA_API_URL}&q=${cityName}`)
             .then((data) => {
                 setWeatherData(convertWeatherToWeatherDataProps(data));
             })
