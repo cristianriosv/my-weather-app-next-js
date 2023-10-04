@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Inter } from 'next/font/google'
-import { CITIES } from '@/constants/general';
+import { CITIES } from '@/constants/general.constants';
 import useCurrentLocation from '@/hooks/useIPCurrentLocation';
 import useWeatherData from '@/hooks/useWeatherData';
 import useCacheLastSelectedCity from '@/hooks/useCacheLastSelectedCity';

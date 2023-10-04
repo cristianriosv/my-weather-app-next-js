@@ -1,3 +1,11 @@
+export const convertIpLocationToLocationDataProps = (ipLocation: IpGeolocation): LocationDataProps => (
+    {
+        cityName: ipLocation.city,
+        latitude: ipLocation.latitude,
+        longitude: ipLocation.longitude
+    }
+);
+
 export const convertWeatherToWeatherDataProps = (weather: WeatherData): WeatherDataProps => (
     {
         temperature: weather.main.temp,

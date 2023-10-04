@@ -1,5 +1,5 @@
 import useLocalStorage from "./useLocalStorage";
-import { LOCAL_STORAGE_KEY_SELECTED_CITY } from "@/constants/general";
+import { LOCAL_STORAGE_KEY_SELECTED_CITY } from "@/constants/general.constants";
 
 const useCacheLastSelectedCity = () => {
     const { getLocalStorage, setLocalStorage } = useLocalStorage();
