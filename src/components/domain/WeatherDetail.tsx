@@ -5,6 +5,7 @@ import Image from 'next/image';
 const WeatherDetail = ({
     temperature,
     weatherIcon,
+    weatherName,
     weatherDescription,
     pressure,
     windSpeed,
@@ -18,8 +19,9 @@ const WeatherDetail = ({
             src={`${WEATHER_ICON_IMAGE_URL}${weatherIcon}@4x.png`}
             width={WEATHER_ICON_WIDTH}
             height={WEATHER_ICON_HEIGHT}
-            alt="Weather icon"
+            alt={weatherName}
         />
+        <h4>{weatherName}</h4>
         <h4>{weatherDescription}</h4>
         <h4>Humidity: {humidity}</h4>
         <h4>Wind: {windSpeed}</h4>

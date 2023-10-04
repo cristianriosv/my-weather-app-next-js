@@ -6,14 +6,15 @@ export const convertIpLocationToLocationDataProps = (ipLocation: IpGeolocation):
     }
 );
 
-export const convertWeatherToWeatherDataProps = (weather: WeatherData): WeatherDataProps => (
+export const convertWeatherToWeatherDataProps = (weatherData: WeatherData): WeatherDataProps => (
     {
-        temperature: weather.main.temp,
-        feelsLike: weather.main.feels_like,
-        humidity: weather.main.humidity,
-        windSpeed: weather.wind.speed,
-        weatherDescription: weather.weather[0].description,
-        weatherIcon: weather.weather[0].icon,
-        pressure: weather.main.pressure
+        temperature: weatherData.main.temp,
+        feelsLike: weatherData.main.feels_like,
+        humidity: weatherData.main.humidity,
+        windSpeed: weatherData.wind.speed,
+        weatherName: weatherData.weather[0].main,
+        weatherDescription: weatherData.weather[0].description,
+        weatherIcon: weatherData.weather[0].icon,
+        pressure: weatherData.main.pressure
     }
 );

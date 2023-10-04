@@ -9,6 +9,7 @@ interface WeatherData {
         {
             description: string;
             icon: string;
+            main: string;
         }
     ],
     wind: {
