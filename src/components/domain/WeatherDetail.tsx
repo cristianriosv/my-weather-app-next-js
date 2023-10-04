@@ -1,3 +1,7 @@
+import { WEATHER_ICON_IMAGE_URL } from '@/constants/externalServices.constants';
+import { WEATHER_ICON_HEIGHT, WEATHER_ICON_WIDTH } from '@/constants/general.constants';
+import Image from 'next/image';
+
 const WeatherDetail = ({
     temperature,
     weatherIcon,
@@ -10,7 +14,12 @@ const WeatherDetail = ({
     <div>
         <h1>{temperature} °C</h1>
         <h4>Feels like: {feelsLike} °C</h4>
-        <h1>{weatherIcon}</h1>
+        <Image
+            src={`${WEATHER_ICON_IMAGE_URL}${weatherIcon}@4x.png`}
+            width={WEATHER_ICON_WIDTH}
+            height={WEATHER_ICON_HEIGHT}
+            alt="Weather icon"
+        />
         <h4>{weatherDescription}</h4>
         <h4>Humidity: {humidity}</h4>
         <h4>Wind: {windSpeed}</h4>
