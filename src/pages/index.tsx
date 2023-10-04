@@ -1,29 +1,38 @@
 import { useEffect, useState } from 'react';
 import { Inter } from 'next/font/google'
-import { CITIES } from '@/constants/cities';
+import { CITIES } from '@/constants/general';
 import useCurrentLocation from '@/hooks/useIPCurrentLocation';
 import useWeatherData from '@/hooks/useWeatherData';
+import useCacheLastSelectedCity from '@/hooks/useCacheLastSelectedCity';
 import SelectField from '@/components/shared/SelectField'
 import WeatherDetail from '@/components/domain/WeatherDetail';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-    const [selectedCity, setSelectedCity] = useState('');
+    const { lastSelectedCity, updateLastSelectedCity } = useCacheLastSelectedCity();
+    const [selectedCity, setSelectedCity] = useState(lastSelectedCity);
     const [cityOptions, setCityOptions] = useState(CITIES);
     const { IPCurrentLocation } = useCurrentLocation();
     const { weatherData, updateWeatherData } = useWeatherData();
 
     useEffect(() => {
-        if (IPCurrentLocation && !cityOptions.includes(IPCurrentLocation.cityName)) {
-            setCityOptions([IPCurrentLocation.cityName, ...cityOptions]);
-            setSelectedCity(IPCurrentLocation.cityName);
+        if (IPCurrentLocation) {
+            const { cityName } = IPCurrentLocation;
+            if (!cityOptions.includes(cityName)) {
+                setCityOptions([cityName, ...cityOptions]);
+            }
+            if (!lastSelectedCity) {
+                setSelectedCity(cityName);
+                updateLastSelectedCity(cityName);
+            }
         }
     }, [IPCurrentLocation]);
 
     useEffect(() => {
         if (selectedCity) {
             updateWeatherData(selectedCity);
+            updateLastSelectedCity(selectedCity);
         }
     }, [selectedCity]);
 
