@@ -1,5 +1,4 @@
 const WeatherDetail = ({
-    cityName,
     temperature,
     weatherIcon,
     weatherDescription,
@@ -9,7 +8,6 @@ const WeatherDetail = ({
     humidity
 }: WeatherDataProps) => (
     <div>
-        <h3>{cityName}</h3>
         <h1>{temperature} °C</h1>
         <h4>Feels like: {feelsLike} °C</h4>
         <h1>{weatherIcon}</h1>

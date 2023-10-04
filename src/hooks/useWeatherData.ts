@@ -9,7 +9,7 @@ const useWeatherData = () => {
     const updateWeatherData = async (cityName: string) => {
         getData(`https://api.openweathermap.org/data/2.5/weather?units=metric&q=${cityName}&appid=cf3e3bb938b7dc300137e6010fbe89e7`)
             .then((data) => {
-                setWeatherData(convertWeatherToWeatherDataProps(cityName, data));
+                setWeatherData(convertWeatherToWeatherDataProps(data));
             })
     };
 

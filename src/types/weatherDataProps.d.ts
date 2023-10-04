@@ -1,5 +1,4 @@
 type WeatherDataProps = {
-    cityName: string;
     temperature: number;
     feelsLike: number;
     humidity: number;

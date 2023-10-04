@@ -1,6 +1,5 @@
-export const convertWeatherToWeatherDataProps = (cityName: string, weather: WeatherData): WeatherDataProps => (
+export const convertWeatherToWeatherDataProps = (weather: WeatherData): WeatherDataProps => (
     {
-        cityName,
         temperature: weather.main.temp,
         feelsLike: weather.main.feels_like,
         humidity: weather.main.humidity,
