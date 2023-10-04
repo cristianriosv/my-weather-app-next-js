@@ -1,13 +1,32 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Inter } from 'next/font/google'
-import { cities } from '@/constants/cities';
+import { CITIES } from '@/constants/cities';
+import useCurrentLocation from '@/hooks/useIPCurrentLocation';
+import useWeatherData from '@/hooks/useWeatherData';
 import SelectField from '@/components/shared/SelectField'
 import WeatherDetail from '@/components/domain/WeatherDetail';
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
-    const [city, setCity] = useState('');
+    const [selectedCity, setSelectedCity] = useState('');
+    const [cityOptions, setCityOptions] = useState(CITIES);
+    const { IPCurrentLocation } = useCurrentLocation();
+    const { weatherData, updateWeatherData } = useWeatherData();
+
+    useEffect(() => {
+        if (IPCurrentLocation && !cityOptions.includes(IPCurrentLocation.cityName)) {
+            setCityOptions([IPCurrentLocation.cityName, ...cityOptions]);
+            setSelectedCity(IPCurrentLocation.cityName);
+        }
+    }, [IPCurrentLocation]);
+
+    useEffect(() => {
+        if (selectedCity) {
+            updateWeatherData(selectedCity);
+        }
+    }, [selectedCity]);
+
     return (
         <main
             className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
@@ -17,20 +36,11 @@ export default function Home() {
                     Weather app
                     <SelectField
                         label="Select the city"
-                        value={city}
-                        options={cities}
-                        onChange={(e) => { e.target.value && setCity(e.target.value) }}
+                        value={selectedCity}
+                        options={cityOptions}
+                        onChange={(e) => { e.target.value && setSelectedCity(e.target.value) }}
                     />
-                    <WeatherDetail
-                        cityName={city}
-                        temperature={20}
-                        icon="🌤"
-                        weatherName="Cloudy"
-                        pressure={20}
-                        wind={20}
-                        feelsLike={20}
-                        humidity={20}
-                    />
+                    {weatherData && <WeatherDetail {...weatherData} />}
                 </div>
             </div>
         </main>
