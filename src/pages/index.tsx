@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Inter } from 'next/font/google'
 import { CITIES } from '@/constants/general.constants';
-import useCurrentLocation from '@/hooks/useIPCurrentLocation';
+import useCurrentLocationFromIP from '@/hooks/useCurrentLocationFromIP';
 import useWeatherData from '@/hooks/useWeatherData';
 import useCacheLastSelectedCity from '@/hooks/useCacheLastSelectedCity';
 import SelectField from '@/components/shared/SelectField'
@@ -13,7 +13,7 @@ export default function Home() {
     const { lastSelectedCity, updateLastSelectedCity } = useCacheLastSelectedCity();
     const [selectedCity, setSelectedCity] = useState(lastSelectedCity);
     const [cityOptions, setCityOptions] = useState(CITIES);
-    const { IPCurrentLocation } = useCurrentLocation();
+    const { IPCurrentLocation } = useCurrentLocationFromIP();
     const { weatherData, updateWeatherData } = useWeatherData();
 
     useEffect(() => {

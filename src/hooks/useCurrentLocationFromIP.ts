@@ -3,7 +3,7 @@ import useRequest from "./useRequest";
 import { convertIpLocationToLocationDataProps } from "@/utils/convertExternalServicesDataToClientProps.utils";
 import { IP_LOCATION_CHECK_API_URL } from "@/constants/externalServices.constants";
 
-const useIPCurrentLocation = () => {
+const useCurrentLocationFromIP = () => {
     const [IPCurrentLocation, setIPCurrentLocation] = useState<LocationDataProps | null>(null);
     const { getData } = useRequest();
 
@@ -17,4 +17,4 @@ const useIPCurrentLocation = () => {
     return { IPCurrentLocation };
 };
 
-export default useIPCurrentLocation;
+export default useCurrentLocationFromIP;
