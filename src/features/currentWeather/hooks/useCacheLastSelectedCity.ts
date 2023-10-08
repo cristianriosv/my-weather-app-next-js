@@ -1,4 +1,4 @@
-import useLocalStorage from "@/hooks/useLocalStorage";
+import useLocalStorage from "@/shared/hooks/useLocalStorage";
 import { LOCAL_STORAGE_KEY_SELECTED_CITY } from "@/shared/constants/general";
 
 const useCacheLastSelectedCity = () => {

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Inter } from 'next/font/google'
 import { CITIES } from '@/features/currentWeather/constants/cities';
-import useCurrentLocationFromIP from '@/hooks/useCurrentLocationFromIP';
+import useCurrentLocationFromIP from '@/shared/hooks/useCurrentLocationFromIP';
 import useWeatherData from '@/features/currentWeather/hooks/useWeatherData';
 import useCacheLastSelectedCity from '@/features/currentWeather/hooks/useCacheLastSelectedCity';
 import SelectField from '@/shared/components/SelectField'
