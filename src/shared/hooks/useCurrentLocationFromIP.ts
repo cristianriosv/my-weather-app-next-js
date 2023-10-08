@@ -4,7 +4,7 @@ import { convertIpGeolocationToLocationDataProps } from "@/shared/utils/convertE
 import { IP_LOCATION_CHECK_API_URL } from "@/shared/constants/externalApi";
 
 const useCurrentLocationFromIP = () => {
-    const [IPCurrentLocation, setIPCurrentLocation] = useState<LocationDataProps | null>(null);
+    const [IPCurrentLocation, setIPCurrentLocation] = useState<LocationDataProps | null>(null); 
     const { getData, data, error } = useRequest();
 
     useEffect(() => {
