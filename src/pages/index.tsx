@@ -1,10 +1,11 @@
 import CurrentWeatherView from '@/features/currentWeather/CurrentWeatherView';
-import { Inter } from 'next/font/google'
-
-const inter = Inter({ subsets: ['latin'] });
+import MainLayout from '@/shared/layouts/mainLayout';
+import { NextPageWithLayout } from './_app';
    
-export default function Home() {
-    return (
-        <CurrentWeatherView />
-    );
+const Home: NextPageWithLayout = () => {
+    return <CurrentWeatherView />;
 }
+
+Home.getLayout = MainLayout;
+
+export default Home;
