@@ -17,7 +17,7 @@ export default function MainLayout(page: ReactElement) {
                     />
                 </div>
             </header>
-            <main className={`w-full px-12 py-1 grow`}>
+            <main className={`w-full px-12 py-1 grow flex justify-center items-start`}>
                 {page}
             </main>
             <footer className="grotesk w-full flex items-center inset-x-0 bottom-0 text-xs">
