@@ -8,7 +8,7 @@ export default function MainLayout(page: ReactElement) {
         <>
             Here goes the header
             <main
-                className={`flex min-h-screen flex-col items-center justify-between p-24 ${inter.className}`}
+                className={`flex flex-col items-center justify-between p-24 ${inter.className}`}
             >
                 {page}
             </main>

@@ -1,4 +1,4 @@
-export const convertWeatherToWeatherDataProps = (weatherData: WeatherData): WeatherDataProps => (
+export const convertWeatherDataToWeatherDetailsProps = (weatherData: WeatherData): WeatherDataProps => (
     {
         temperature: weatherData.main.temp,
         feelsLike: weatherData.main.feels_like,
