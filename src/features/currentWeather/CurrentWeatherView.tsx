@@ -5,33 +5,36 @@ import useWeatherData from '@/features/currentWeather/hooks/useWeatherData';
 import useCacheLastSelectedLocation from '@/features/currentWeather/hooks/useCacheLastSelectedLocation';
 import SelectField from '@/shared/components/SelectField'
 import WeatherDetail from '@/features/currentWeather/components/WeatherDetails';
+import { convertLocationPropsToSelectFieldOptionItem, getValueStringFromLocation } from './utils/parseLocationOptions';
 
 const CurrentWeatherView = () => {
     const { lastSelectedLocation, updateLastSelectedLocation } = useCacheLastSelectedLocation();
-    const [cityOptions, setCityOptions] = useState<SelectFieldOptionItemProps[]>(DEFAULT_LOCATIONS.map((city) => ({ label:`${city.cityName},${city.countryCode}`, value: `${city.cityName},${city.countryCode}` })));
-    const [selectedCity, setSelectedCity] = useState<string>(lastSelectedLocation);
+    const [locationOptions, setLocationOptions] = useState<SelectFieldOptionItemProps[]>(
+        DEFAULT_LOCATIONS.map(convertLocationPropsToSelectFieldOptionItem)
+    );
+    const [selectedLocation, setSelectedLocation] = useState<string>(lastSelectedLocation);
     const { IPCurrentLocation } = useCurrentLocationFromIP();
     const { weatherData, updateWeatherData } = useWeatherData();
  
     useEffect(() => {
         if (IPCurrentLocation) {
-            const { cityName, countryCode } = IPCurrentLocation;
-            if (!cityOptions.find((city) => city.value === `${cityName},${countryCode}`)) {
-                setCityOptions([{ label:`${cityName},${countryCode}`, value: `${cityName},${countryCode}` }, ...cityOptions]);
+            const valueStringFromLocation = getValueStringFromLocation(IPCurrentLocation);
+            if (!locationOptions.some((option) => option.value === valueStringFromLocation)) {
+                setLocationOptions([convertLocationPropsToSelectFieldOptionItem(IPCurrentLocation), ...locationOptions]);
             }
             if (!lastSelectedLocation) {
-                setSelectedCity(cityName);
-                updateLastSelectedLocation(cityName);
+                setSelectedLocation(valueStringFromLocation);
+                updateLastSelectedLocation(valueStringFromLocation);
             }
         }
     }, [IPCurrentLocation]);
 
     useEffect(() => {
-        if (selectedCity) {
-            updateWeatherData(selectedCity);
-            updateLastSelectedLocation(selectedCity);
+        if (selectedLocation) {
+            updateWeatherData(selectedLocation);
+            updateLastSelectedLocation(selectedLocation);
         }
-    }, [selectedCity]);
+    }, [selectedLocation]);
 
     return (
         <div className="max-w-5xl w-full items-center justify-between flex">
@@ -39,9 +42,9 @@ const CurrentWeatherView = () => {
                 Weather app
                 <SelectField
                     label="Select the city"
-                    selectedValue={selectedCity}
-                    options={cityOptions}
-                    onChange={(e) => { e.target.value && setSelectedCity(e.target.value) }}
+                    selectedValue={selectedLocation}
+                    options={locationOptions}
+                    onChange={(e) => { e.target.value && setSelectedLocation(e.target.value) }}
                 />
                 {weatherData && <WeatherDetail {...weatherData} />}
             </div>
