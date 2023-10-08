@@ -37,7 +37,7 @@ const CurrentWeatherView = () => {
     }, [selectedLocation]);
 
     return (
-        <div className="max-w-5xl w-full items-center justify-between flex">
+        <div className="w-full items-center justify-between flex">
             <div className="flex-row w-full items-end justify-center bg-gradient-to-t">
                 Weather app
                 <SelectField
