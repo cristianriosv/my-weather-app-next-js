@@ -15,7 +15,7 @@ const useCurrentLocationFromIP = () => {
         }
     }, [data, error]);
 
-    return { IPCurrentLocation };
+    return { IPCurrentLocation, IPCurrentLocationError: error };
 };
 
 export default useCurrentLocationFromIP;

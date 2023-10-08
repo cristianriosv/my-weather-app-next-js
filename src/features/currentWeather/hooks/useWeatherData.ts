@@ -5,17 +5,23 @@ import { convertWeatherDataToWeatherDetailsProps } from "../utils/convertWeather
 
 const useWeatherData = () => {
     const [weatherData, setWeatherData] = useState<WeatherDataProps | null>(null);
-    const { getData, data } = useRequest();
+    const { getData, data, error, isLoading } = useRequest();
 
     useEffect(() => {
         data && setWeatherData(convertWeatherDataToWeatherDetailsProps(data));
     }, [data]);
     
     const updateWeatherData = async (selectedOption: string) => {
+        setWeatherData(null);
         getData(`${WEATHER_DATA_API_URL}&q=${selectedOption}`);
     };
 
-    return { weatherData, updateWeatherData };
+    return {
+        weatherData,
+        updateWeatherData,
+        weatherDataError: error,
+        weatherDataIsLoading: isLoading
+    };
 };
 
 export default useWeatherData;

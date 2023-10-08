@@ -7,6 +7,7 @@ import SelectField from '@/shared/components/SelectField'
 import WeatherDetail from '@/features/currentWeather/components/WeatherDetails';
 import { convertLocationPropsToSelectFieldOptionItem, getValueStringFromLocation } from './utils/parseLocationOptions';
 import { CURRENT_WEATHER_LABELS } from './constants/labels';
+import WeatherDetailSkeleton from './components/WeatherDetailSekeleton';
 
 const CurrentWeatherView = () => {
     const { lastSelectedLocation, updateLastSelectedLocation } = useCacheLastSelectedLocation();
@@ -15,7 +16,12 @@ const CurrentWeatherView = () => {
     );
     const [selectedLocation, setSelectedLocation] = useState<string>(lastSelectedLocation);
     const { IPCurrentLocation } = useCurrentLocationFromIP();
-    const { weatherData, updateWeatherData } = useWeatherData();
+    const {
+        weatherData,
+        updateWeatherData,
+        weatherDataError,
+        weatherDataIsLoading
+    } = useWeatherData();
  
     useEffect(() => {
         if (IPCurrentLocation) {
@@ -50,6 +56,12 @@ const CurrentWeatherView = () => {
                     options={locationOptions}
                     onChange={(e) => { e.target.value && setSelectedLocation(e.target.value) }}
                 />
+                {weatherDataIsLoading && <WeatherDetailSkeleton />}
+                {weatherDataError && (
+                    <div className="text-red-300 text-base text-center mt-12">
+                        {CURRENT_WEATHER_LABELS.WEATHER_DATA_ERROR}
+                    </div>
+                )}
                 {weatherData && <WeatherDetail {...weatherData} />}
             </div>
         </div>

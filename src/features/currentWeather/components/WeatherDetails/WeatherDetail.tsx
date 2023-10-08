@@ -31,7 +31,7 @@ const WeatherDetail = ({
     )
 
     return (
-        <div className="px-0 py-2 md:px-5 pt-5 sm:pt-0">
+        <div className="px-0 py-2 md:px-5 pt-5 sm:pt-0 animate-fade-in">
             <div className="flex flex-col xsm:flex-row justify-between items-center">
                 <div>
                     <div className="text-5xl flex drop-shadow-text">

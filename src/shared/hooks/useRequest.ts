@@ -8,6 +8,7 @@ const useRequest = () => {
 
     const getData = (url: string): void => {
         setIsLoading(true);
+        setError(undefined);
         axios.get(url)
             .then((response) => {
                 setIsLoading(false);
@@ -16,6 +17,7 @@ const useRequest = () => {
             .catch((error) => {
                 setIsLoading(false);
                 setError(error);
+                setData(undefined);
             });
     };
 

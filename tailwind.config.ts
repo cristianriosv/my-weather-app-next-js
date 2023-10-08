@@ -19,6 +19,27 @@ const config: Config = {
     },
     dropShadow: {
       'text': '3px 3px rgba(0, 0, 0, 0.4)'
+    },
+    animation: {
+      'fade-in': 'fade 1s cubic-bezier(0.4, 0, 0.6, 1)',
+      'pulse2': 'pulse2 2s cubic-bezier(0.4, 0, 0.6, 1) infinite'
+    },
+    keyframes: {
+      fade: {
+        '0%': { opacity: '0' },
+        '100%': { opacity: '1' },
+      },
+      pulse2: {
+        '0%': {
+          opacity: '0'
+        },
+        '50%': {
+          opacity: '.5'
+        },
+        '100%': {
+          opacity: '0'
+        },
+      }
     }
   },
   plugins: [],
