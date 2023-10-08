@@ -1,5 +1,5 @@
-import { WEATHER_ICON_IMAGE_URL } from '@/constants/externalServices.constants';
-import { WEATHER_ICON_HEIGHT, WEATHER_ICON_WIDTH } from '@/constants/general.constants';
+import { WEATHER_ICON_IMAGE_URL } from '@/constants/externalServices';
+import { WEATHER_ICON_HEIGHT, WEATHER_ICON_WIDTH } from '@/constants/general';
 import Image from 'next/image';
 
 const WeatherDetail = ({

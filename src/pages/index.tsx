@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Inter } from 'next/font/google'
-import { CITIES } from '@/constants/general.constants';
+import { CITIES } from '@/constants/cities';
 import useCurrentLocationFromIP from '@/hooks/useCurrentLocationFromIP';
 import useWeatherData from '@/hooks/useWeatherData';
 import useCacheLastSelectedCity from '@/hooks/useCacheLastSelectedCity';
@@ -11,16 +11,16 @@ const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
     const { lastSelectedCity, updateLastSelectedCity } = useCacheLastSelectedCity();
-    const [selectedCity, setSelectedCity] = useState(lastSelectedCity);
-    const [cityOptions, setCityOptions] = useState(CITIES);
+    const [cityOptions, setCityOptions] = useState<SelectFieldOptionItemProps[]>(CITIES.map((city) => ({ label:`${city.cityName},${city.countryCode}`, value: `${city.cityName},${city.countryCode}` })));
+    const [selectedCity, setSelectedCity] = useState<string>(lastSelectedCity);
     const { IPCurrentLocation } = useCurrentLocationFromIP();
     const { weatherData, updateWeatherData } = useWeatherData();
-
+ 
     useEffect(() => {
         if (IPCurrentLocation) {
-            const { cityName } = IPCurrentLocation;
-            if (!cityOptions.includes(cityName)) {
-                setCityOptions([cityName, ...cityOptions]);
+            const { cityName, countryCode } = IPCurrentLocation;
+            if (!cityOptions.find((city) => city.value === cityName)) {
+                setCityOptions([{ label:`${cityName},${countryCode}`, value: `${cityName},${countryCode}` }, ...cityOptions]);
             }
             if (!lastSelectedCity) {
                 setSelectedCity(cityName);
@@ -45,7 +45,7 @@ export default function Home() {
                     Weather app
                     <SelectField
                         label="Select the city"
-                        value={selectedCity}
+                        selectedValue={selectedCity}
                         options={cityOptions}
                         onChange={(e) => { e.target.value && setSelectedCity(e.target.value) }}
                     />
