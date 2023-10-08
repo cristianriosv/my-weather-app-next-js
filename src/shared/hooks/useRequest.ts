@@ -1,12 +1,29 @@
+import { useState } from "react";
+import axios from "axios";
+
 const useRequest = () => {
-    const getData = async (url: string) => {
-        const response = await fetch(url);
-        const data = await response.json();
-        return data;
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState<any>();
+    const [data, setData] = useState<any>();
+
+    const getData = (url: string): void => {
+        setIsLoading(true);
+        axios.get(url)
+            .then((response) => {
+                setIsLoading(false);
+                setData(response.data);
+            })
+            .catch((error) => {
+                setIsLoading(false);
+                setError(error);
+            });
     };
 
     return {
-        getData
+        getData,
+        isLoading,
+        error,
+        data
     }
 };
 
