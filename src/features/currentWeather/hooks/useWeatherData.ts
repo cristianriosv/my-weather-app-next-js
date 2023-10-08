@@ -1,7 +1,7 @@
 import { useState } from "react";
 import useRequest from "@/shared/hooks/useRequest";
 import { WEATHER_DATA_API_URL } from "../constants/weatherApi";
-import { convertWeatherDataToWeatherDetailsProps } from "../utils/convertExternalServiceDataToClientProps";
+import { convertWeatherDataToWeatherDetailsProps } from "../utils/convertWeatherDataToWeatherDetailsProps";
 
 const useWeatherData = () => {
     const [weatherData, setWeatherData] = useState<WeatherDataProps | null>(null);
