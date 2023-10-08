@@ -1,4 +1,4 @@
-export const CITIES: LocationDataProps[] = [
+export const DEFAULT_LOCATIONS: LocationDataProps[] = [
     {
         latitude: 51.5287398,
         longitude: -0.2664034,

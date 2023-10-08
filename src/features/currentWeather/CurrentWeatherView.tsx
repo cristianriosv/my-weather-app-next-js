@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { CITIES } from '@/features/currentWeather/constants/cities';
+import { DEFAULT_LOCATIONS } from '@/features/currentWeather/constants/locations';
 import useCurrentLocationFromIP from '@/shared/hooks/useCurrentLocationFromIP';
 import useWeatherData from '@/features/currentWeather/hooks/useWeatherData';
 import useCacheLastSelectedLocation from '@/features/currentWeather/hooks/useCacheLastSelectedLocation';
@@ -8,7 +8,7 @@ import WeatherDetail from '@/features/currentWeather/components/WeatherDetails';
 
 const CurrentWeatherView = () => {
     const { lastSelectedLocation, updateLastSelectedLocation } = useCacheLastSelectedLocation();
-    const [cityOptions, setCityOptions] = useState<SelectFieldOptionItemProps[]>(CITIES.map((city) => ({ label:`${city.cityName},${city.countryCode}`, value: `${city.cityName},${city.countryCode}` })));
+    const [cityOptions, setCityOptions] = useState<SelectFieldOptionItemProps[]>(DEFAULT_LOCATIONS.map((city) => ({ label:`${city.cityName},${city.countryCode}`, value: `${city.cityName},${city.countryCode}` })));
     const [selectedCity, setSelectedCity] = useState<string>(lastSelectedLocation);
     const { IPCurrentLocation } = useCurrentLocationFromIP();
     const { weatherData, updateWeatherData } = useWeatherData();
