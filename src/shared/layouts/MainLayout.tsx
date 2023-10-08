@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import { ReactElement } from 'react';
 import { Inter } from 'next/font/google';
+import { LABELS } from '../constants/labels';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,7 +23,7 @@ export default function MainLayout(page: ReactElement) {
             </main>
             <footer className="grotesk w-full flex items-center inset-x-0 bottom-0 text-xs">
                 <div className="mx-auto px-5 py-5">
-                    @2023 MyWeather - Project info and code: ...
+                    {LABELS.FOOTER_TEXT}
                 </div>
             </footer>
         </div>
