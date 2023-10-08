@@ -1,6 +1,6 @@
-import { WEATHER_ICON_IMAGE_URL } from '@/constants/externalServices';
-import { WEATHER_ICON_HEIGHT, WEATHER_ICON_WIDTH } from '@/constants/general';
 import Image from 'next/image';
+import { WEATHER_ICON_HEIGHT, WEATHER_ICON_WIDTH } from '@/shared/constants/general';
+import { WEATHER_ICON_IMAGE_URL } from '../../constants/weatherApi';
 
 const WeatherDetail = ({
     temperature,

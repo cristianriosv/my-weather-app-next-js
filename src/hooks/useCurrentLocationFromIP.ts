@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import useRequest from "./useRequest";
 import { convertIpLocationToLocationDataProps } from "@/utils/convertExternalServicesDataToClientProps";
-import { IP_LOCATION_CHECK_API_URL } from "@/constants/externalServices";
+import { IP_LOCATION_CHECK_API_URL } from "@/shared/constants/externalApi";
 
 const useCurrentLocationFromIP = () => {
     const [IPCurrentLocation, setIPCurrentLocation] = useState<LocationDataProps | null>(null);
