@@ -1,4 +1,4 @@
-export const convertIpLocationToLocationDataProps = (ipLocation: IpGeolocation): LocationDataProps => (
+export const convertIpGeolocationToLocationDataProps = (ipLocation: IpGeolocation): LocationDataProps => (
     {
         cityName: ipLocation.city,
         latitude: ipLocation.latitude,

@@ -2,14 +2,14 @@ import { useEffect, useState } from 'react';
 import { CITIES } from '@/features/currentWeather/constants/cities';
 import useCurrentLocationFromIP from '@/shared/hooks/useCurrentLocationFromIP';
 import useWeatherData from '@/features/currentWeather/hooks/useWeatherData';
-import useCacheLastSelectedCity from '@/features/currentWeather/hooks/useCacheLastSelectedCity';
+import useCacheLastSelectedLocation from '@/features/currentWeather/hooks/useCacheLastSelectedLocation';
 import SelectField from '@/shared/components/SelectField'
 import WeatherDetail from '@/features/currentWeather/components/WeatherDetails';
 
 const CurrentWeatherView = () => {
-    const { lastSelectedCity, updateLastSelectedCity } = useCacheLastSelectedCity();
+    const { lastSelectedLocation, updateLastSelectedLocation } = useCacheLastSelectedLocation();
     const [cityOptions, setCityOptions] = useState<SelectFieldOptionItemProps[]>(CITIES.map((city) => ({ label:`${city.cityName},${city.countryCode}`, value: `${city.cityName},${city.countryCode}` })));
-    const [selectedCity, setSelectedCity] = useState<string>(lastSelectedCity);
+    const [selectedCity, setSelectedCity] = useState<string>(lastSelectedLocation);
     const { IPCurrentLocation } = useCurrentLocationFromIP();
     const { weatherData, updateWeatherData } = useWeatherData();
  
@@ -19,9 +19,9 @@ const CurrentWeatherView = () => {
             if (!cityOptions.find((city) => city.value === `${cityName},${countryCode}`)) {
                 setCityOptions([{ label:`${cityName},${countryCode}`, value: `${cityName},${countryCode}` }, ...cityOptions]);
             }
-            if (!lastSelectedCity) {
+            if (!lastSelectedLocation) {
                 setSelectedCity(cityName);
-                updateLastSelectedCity(cityName);
+                updateLastSelectedLocation(cityName);
             }
         }
     }, [IPCurrentLocation]);
@@ -29,7 +29,7 @@ const CurrentWeatherView = () => {
     useEffect(() => {
         if (selectedCity) {
             updateWeatherData(selectedCity);
-            updateLastSelectedCity(selectedCity);
+            updateLastSelectedLocation(selectedCity);
         }
     }, [selectedCity]);
 
