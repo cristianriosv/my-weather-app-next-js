@@ -9,7 +9,7 @@ The project is created with Next.js and Typescript. For the styles I'm using tai
 
 Create your .env from the .env.template file (local, development, production, etc) and set the two required api keys to connect to external services.
 
-The project uses two different exteran services, you have the instructions to get the api keys in their websites:
+The project uses two different external services, you have the instructions to get the api keys on their websites:
 
 - For ip geolocation: https://ipstack.com
 - For current weather data: https://openweathermap.org/current
@@ -23,14 +23,14 @@ npm run dev
 
 ## Automated tests
 
-Tests are managed with cypress.
+Tests are managed by cypress.
 
 To run e2e tests:
 ```bash
 npm run test:e2e
 ```
 
-Also is possible to run e2e tests headless:
+Also it is possible to run e2e tests headless:
 ```bash
 npm run test:e2e:headless
 ```
