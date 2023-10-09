@@ -48,7 +48,7 @@ All tests are in the cypress folder:
 
 ## Project folder structure
 
-For the project I have used a featured module structure. Even that this is a very small project, the featured module allows you to scale the application in a very clear way, puting focus on real general reusable components, utils, hooks, constants, etc. across the entire project, but also splitting the specified feature components, utils, hooks and constants to avoid mixing concepts and createing a very hard folder strucutre.
+For the project I have used a featured module structure. Even though this is a very small project, the featured module allows you to scale the application in a very clear way, putting focus on real general reusable components, utils, hooks, constants, etc. across the entire project, but also splitting the specified feature components, utils, hooks and constants to avoid mixing concepts and creating a very hard folder structure.
 
 ```bash
 # src/features/
