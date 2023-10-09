@@ -1,40 +1,64 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# --- MyWeather Web App ---
 
-## Getting Started
+The app consists of 1 screen, where the user can select a city (London, Amsterdam, Moscow, New York, and your home city as default) and see the weather of this city (temperature, icon of the current weather, weather name, pressure, wind, “feels like” and humidity). Also, users have
+the possibility to reload this page to update weather data.
 
-First, run the development server:
+The project is created with Next.js and Typescript. For the styles I'm using tailwind to achieve a fast development and show a good and adaptive design.
+
+## How to start
+
+Create your .env from the .env.template file (local, development, production, etc) and set the two required api keys to connect to external services.
+
+The project uses two different exteran services, you have the instructions to get the api keys in their websites:
+
+- For ip geolocation: https://ipstack.com
+- For current weather data: https://openweathermap.org/current
+
+Use the package manager npm to install the packages in the project and the run the development server.
 
 ```bash
+npm i
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Automated tests
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+Tests are managed with cypress.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+To run e2e tests:
+```bash
+npm run test:e2e
+```
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+Also is possible to run e2e tests headless:
+```bash
+npm run test:e2e:headless
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+Too run unit and components tests:
+```bash
+npm run test:components
+```
 
-## Learn More
+All tests are in the cypress folder:
+```bash
+# cypress/
+    Folder containing e2e, component and unit tests
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Project folder structure
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+For the project I have used a featured module structure. Even that this is a very small project, the featured module allows you to scale the application in a very clear way, puting focus on real general reusable components, utils, hooks, constants, etc. across the entire project, but also splitting the specified feature components, utils, hooks and constants to avoid mixing concepts and createing a very hard folder strucutre.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+# src/features/
+    This folder contains all the components, constants, utils and hooks that only matters to the feature.
+# src/pages/
+    This is the routing page folder from Next.js
+# src/shared/
+    Here we have the real components, constants, utils, hooks, etc. that are truly shared across the entire project
+# src/styles/
+    General styles for the application
+```
+## Feedback
+For any feedback, please don't hesitate to contact me.
