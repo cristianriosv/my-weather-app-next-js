@@ -7,6 +7,6 @@ export const getLabelStringFromLocation = (location: LocationDataProps): string 
 }
 
 export const convertLocationPropsToSelectFieldOptionItem = (location: LocationDataProps): SelectFieldOptionItemProps => ({
-    label:`${location.cityName}, ${location.stateName ? location.stateName + ', ' : ''}${location.countryName}`,
+    label: getLabelStringFromLocation(location),
     value: getValueStringFromLocation(location)
 });
