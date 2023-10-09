@@ -10,11 +10,13 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: url('/images/city_bg.png'), linear-gradient(
+  background: bottom repeat-x url('/images/city_bg.png'),
+    linear-gradient(
       to bottom,
       transparent,
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
   background-blend-mode: overlay;
+  background-size: cover;
 }
